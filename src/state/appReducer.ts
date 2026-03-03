@@ -15,6 +15,7 @@ function createTransaction(state: AppState): Transaction | null {
   const id = `TXN-${Date.now()}`;
   const transactionStatus = getTransactionStatus(state.paymentScenario);
   const tableName = getSelectedTableName(state);
+  const isTakeout = state.selectedTableId === 'takeout';
 
   return {
     id,
@@ -22,9 +23,14 @@ function createTransaction(state: AppState): Transaction | null {
     amount,
     method: state.selectedPaymentMethod,
     status: transactionStatus,
-    customerLabel: state.selectedPaymentMethod === 'qr' ? `${tableName} QR guest` : `${tableName} dine-in`,
+    customerLabel: state.selectedPaymentMethod === 'qr' ? `${tableName} QR guest` : isTakeout ? 'Takeout order' : `${tableName} dine-in`,
     cashier: state.cashierName,
     tableName,
+    orderItems: state.cart.map((item) => ({
+      name: item.name,
+      quantity: item.quantity,
+      price: item.price,
+    })),
     failureReason: transactionStatus === 'failed' ? 'Card was not approved' : undefined,
   };
 }
@@ -39,8 +45,8 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         cashierName: action.payload,
         paymentStatus: 'idle',
         paymentMessage: action.payload
-          ? 'Choose a table and add items to begin.'
-          : 'Enter a PIN, choose a table, and add items to begin.',
+          ? 'Choose takeout or table and add items to begin.'
+          : 'Enter a PIN, choose takeout or table, and add items to begin.',
       };
     case 'SELECT_TABLE':
       return { ...state, selectedTableId: action.payload };
@@ -95,10 +101,25 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload),
       };
+    case 'CLEAR_CART':
+      return {
+        ...state,
+        cart: [],
+        selectedPaymentMethod: null,
+        paymentStatus: 'idle',
+        paymentMessage: state.cashierName ? 'Choose takeout or table and add items to begin.' : 'Enter a PIN to begin.',
+      };
     case 'SELECT_PAYMENT_METHOD':
       return {
         ...state,
         selectedPaymentMethod: action.payload,
+        paymentStatus: 'idle',
+        paymentMessage: 'Ready to take payment.',
+      };
+    case 'CLEAR_PAYMENT_METHOD':
+      return {
+        ...state,
+        selectedPaymentMethod: null,
         paymentStatus: 'idle',
         paymentMessage: 'Ready to take payment.',
       };
@@ -117,7 +138,7 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         return {
           ...state,
           paymentStatus: 'failed',
-          paymentMessage: 'Choose a table before taking payment.',
+          paymentMessage: 'Choose takeout or table before taking payment.',
         };
       }
 
@@ -155,10 +176,10 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return {
         ...state,
         paymentStatus: 'idle',
-        paymentMessage: state.cashierName ? 'Choose a table and add items for the next sale.' : 'Enter a PIN to begin.',
+        paymentMessage: state.cashierName ? 'Choose takeout or table and add items for the next sale.' : 'Enter a PIN to begin.',
         paymentScenario: 'success',
         selectedPaymentMethod: null,
-        selectedTableId: '',
+        selectedTableId: 'takeout',
         cart: [],
         activeTransactionId: null,
       };

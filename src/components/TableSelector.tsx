@@ -10,25 +10,38 @@ interface TableSelectorProps {
 
 export function TableSelector({ tables, selectedTableId, selectedTableName, onSelectTable }: TableSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const dineInTables = tables.filter((table) => table.id !== 'takeout');
+  const isTableService = selectedTableId !== '' && selectedTableId !== 'takeout';
 
   return (
     <>
-      <section className="panel">
-        <div className="section-heading">
+      <section className="panel order-source-panel">
+        <div className="section-heading compact-section-heading">
           <div>
-            <p className="eyebrow">Table</p>
-            <h2>Assign the order</h2>
+            <h2>Order Type</h2>
           </div>
         </div>
-        <button type="button" className="table-trigger" onClick={() => setIsOpen(true)}>
-          <div>
-            <strong>{selectedTableName || 'Choose a table'}</strong>
-            <p className="muted">
-              {selectedTableId ? 'Tap to change table or view statuses.' : 'Open the table list before building the sale.'}
-            </p>
-          </div>
-          <span className="badge">View Tables</span>
-        </button>
+        <div className="order-source-toggle" aria-label="Order type">
+          <button
+            type="button"
+            className={!isTableService ? 'order-source-button active' : 'order-source-button'}
+            onClick={() => onSelectTable('takeout')}
+            aria-pressed={!isTableService}
+          >
+            <span className="order-source-title">Takeout</span>
+          </button>
+          <button
+            type="button"
+            className={isTableService ? 'order-source-button active' : 'order-source-button'}
+            onClick={() => setIsOpen(true)}
+            aria-pressed={isTableService}
+          >
+            <span className="order-source-title">
+              Table
+              {isTableService ? <span className="order-source-detail">({selectedTableName})</span> : null}
+            </span>
+          </button>
+        </div>
       </section>
 
       {isOpen ? (
@@ -43,14 +56,19 @@ export function TableSelector({ tables, selectedTableId, selectedTableName, onSe
             <div className="section-heading">
               <div>
                 <p className="eyebrow">Tables</p>
-                <h2 id="table-modal-title">Choose the active table</h2>
+                <h2 id="table-modal-title">Choose a table</h2>
               </div>
-              <button type="button" className="secondary-button" onClick={() => setIsOpen(false)}>
-                Close
+              <button
+                type="button"
+                className="modal-close-button"
+                onClick={() => setIsOpen(false)}
+                aria-label="Close dialog"
+              >
+                X
               </button>
             </div>
             <div className="table-grid">
-              {tables.map((table) => (
+              {dineInTables.map((table) => (
                 <button
                   key={table.id}
                   type="button"

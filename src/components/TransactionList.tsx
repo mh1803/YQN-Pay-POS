@@ -1,22 +1,76 @@
 import { Transaction } from '../types/state';
 import { formatCurrency } from '../utils/currency';
 import { formatTime } from '../utils/dates';
+import { formatOrderSummary, formatPaymentMethodLabel, formatServiceLabel, formatTransactionStatus } from '../utils/transactions';
 
 interface TransactionListProps {
   transactions: Transaction[];
+  totalTransactions: number;
   activeTransactionId: string | null;
+  searchValue: string;
+  statusFilter: 'all' | Transaction['status'];
+  sortValue: 'newest' | 'oldest' | 'amount_desc' | 'amount_asc';
   onOpen: (transactionId: string) => void;
+  onSearchChange: (value: string) => void;
+  onStatusFilterChange: (value: 'all' | Transaction['status']) => void;
+  onSortChange: (value: 'newest' | 'oldest' | 'amount_desc' | 'amount_asc') => void;
 }
 
-export function TransactionList({ transactions, activeTransactionId, onOpen }: TransactionListProps) {
+export function TransactionList({
+  transactions,
+  totalTransactions,
+  activeTransactionId,
+  searchValue,
+  statusFilter,
+  sortValue,
+  onOpen,
+  onSearchChange,
+  onStatusFilterChange,
+  onSortChange,
+}: TransactionListProps) {
   return (
-    <section className="panel">
+    <section className="panel transactions-panel">
       <div className="section-heading">
         <div>
-          <p className="eyebrow">Recent Transactions</p>
-          <h2>Activity feed</h2>
+          <h2>Transactions</h2>
         </div>
-        <span className="badge">{transactions.length} records</span>
+        <span className="badge">
+          {transactions.length}
+          {transactions.length !== totalTransactions ? ` / ${totalTransactions}` : ''} records
+        </span>
+      </div>
+
+      <div className="transactions-toolbar">
+        <input
+          className="transactions-search"
+          type="search"
+          placeholder="Search transactions"
+          value={searchValue}
+          onChange={(event) => onSearchChange(event.target.value)}
+        />
+        <select
+          className="transactions-filter"
+          value={statusFilter}
+          onChange={(event) => onStatusFilterChange(event.target.value as 'all' | Transaction['status'])}
+        >
+          <option value="all">All Statuses</option>
+          <option value="success">Success</option>
+          <option value="failed">Failed</option>
+          <option value="canceled">Canceled</option>
+          <option value="timed_out">Timed Out</option>
+          <option value="refunded">Refunded</option>
+          <option value="voided">Voided</option>
+        </select>
+        <select
+          className="transactions-filter transactions-sort"
+          value={sortValue}
+          onChange={(event) => onSortChange(event.target.value as 'newest' | 'oldest' | 'amount_desc' | 'amount_asc')}
+        >
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="amount_desc">Amount: High to Low</option>
+          <option value="amount_asc">Amount: Low to High</option>
+        </select>
       </div>
 
       <div className="transaction-list">
@@ -33,18 +87,21 @@ export function TransactionList({ transactions, activeTransactionId, onOpen }: T
             className={transaction.id === activeTransactionId ? 'transaction-row active' : 'transaction-row'}
             onClick={() => onOpen(transaction.id)}
           >
-            <div>
-              <strong>{formatCurrency(transaction.amount)}</strong>
-              <p className="muted">
-                {transaction.method === 'cash'
-                  ? 'Cash'
-                  : transaction.method === 'card'
-                    ? 'Debit card'
-                    : 'QR pay'}{' '}
-                • {formatTime(transaction.timestamp)}
-              </p>
+            <div className="transaction-row-main">
+              <div className="transaction-row-topline">
+                <strong>{formatCurrency(transaction.amount)}</strong>
+                <span className={`status-pill status-pill-${transaction.status}`}>
+                  {formatTransactionStatus(transaction.status)}
+                </span>
+              </div>
+              <div className="transaction-row-meta muted">
+                <span>{transaction.id}</span>
+                <span>{formatPaymentMethodLabel(transaction.method)}</span>
+                <span>{formatServiceLabel(transaction)}</span>
+                <span>{formatTime(transaction.timestamp)}</span>
+              </div>
+              <p className="transaction-row-order muted">{formatOrderSummary(transaction)}</p>
             </div>
-            <div className={`status-pill status-pill-${transaction.status}`}>{transaction.status}</div>
           </button>
         ))}
       </div>

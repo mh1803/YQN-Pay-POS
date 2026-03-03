@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { CartList } from '../components/CartList';
 import { MenuCatalog } from '../components/MenuCatalog';
 import { PaymentMethodSelector } from '../components/PaymentMethodSelector';
-import { PaymentStatusPanel } from '../components/PaymentStatusPanel';
 import { TableSelector } from '../components/TableSelector';
 import { CartItem, DemoScenario, MenuCategory, MenuItem, PaymentMethod, PaymentStatus, TableOption } from '../types/state';
 
@@ -26,8 +25,9 @@ interface CheckoutScreenProps {
   onIncrementItem: (itemId: string) => void;
   onDecrementItem: (itemId: string) => void;
   onRemoveItem: (itemId: string) => void;
+  onClearCart: () => void;
   onSelectMethod: (method: 'cash' | 'card' | 'qr') => void;
-  onStartPayment: () => void;
+  onClearMethod: () => void;
   onResolvePayment: () => void;
   onNewSale: () => void;
   onScenarioChange: (scenario: DemoScenario) => void;
@@ -53,8 +53,9 @@ export function CheckoutScreen({
   onIncrementItem,
   onDecrementItem,
   onRemoveItem,
+  onClearCart,
   onSelectMethod,
-  onStartPayment,
+  onClearMethod,
   onResolvePayment,
   onNewSale,
   onScenarioChange,
@@ -64,6 +65,20 @@ export function CheckoutScreen({
   return (
     <>
       <div className="checkout-layout">
+        <aside className="checkout-sidebar">
+          <CartList
+            selectedTableName={selectedTableName}
+            cart={cart}
+            total={cartTotal}
+            canCompleteOrder={canStartPayment}
+            showCompleteOrder
+            onIncrement={onIncrementItem}
+            onDecrement={onDecrementItem}
+            onRemove={onRemoveItem}
+            onClearCart={onClearCart}
+            onCompleteOrder={() => setIsPaymentMethodOpen(true)}
+          />
+        </aside>
         <div className="checkout-main">
           <TableSelector
             tables={tables}
@@ -79,37 +94,24 @@ export function CheckoutScreen({
             onAddItem={onAddItem}
           />
         </div>
-        <aside className="checkout-sidebar">
-          <CartList
-            selectedTableName={selectedTableName}
-            cart={cart}
-            total={cartTotal}
-            canCompleteOrder={canStartPayment}
-            onIncrement={onIncrementItem}
-            onDecrement={onDecrementItem}
-            onRemove={onRemoveItem}
-            onCompleteOrder={() => setIsPaymentMethodOpen(true)}
-          />
-          <PaymentStatusPanel
-            method={selectedPaymentMethod}
-            status={paymentStatus}
-            message={paymentMessage}
-            scenario={paymentScenario}
-            onScenarioChange={onScenarioChange}
-            onResolve={onResolvePayment}
-            onNewSale={onNewSale}
-            onRetry={() => setIsPaymentMethodOpen(true)}
-          />
-        </aside>
       </div>
       <PaymentMethodSelector
         isOpen={isPaymentMethodOpen}
+        total={cartTotal}
+        selectedMethod={selectedPaymentMethod}
+        paymentStatus={paymentStatus}
+        paymentScenario={paymentScenario}
         onClose={() => setIsPaymentMethodOpen(false)}
         onSelect={(method) => {
           onSelectMethod(method);
-          onStartPayment();
+        }}
+        onResolve={onResolvePayment}
+        onNewSale={() => {
+          onNewSale();
           setIsPaymentMethodOpen(false);
         }}
+        onScenarioChange={onScenarioChange}
+        onChangeMethod={onClearMethod}
       />
     </>
   );

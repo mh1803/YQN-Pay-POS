@@ -40,15 +40,8 @@ export function MenuCatalog({
 
   return (
     <>
-      <section className="panel">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">Menu Builder</p>
-            <h2>Add items by category</h2>
-          </div>
-        </div>
-
-        <div className="category-row">
+      <section className="panel menu-panel">
+        <div className="category-row menu-category-row">
           {categories.map((category) => (
             <button
               key={category.id}
@@ -72,13 +65,11 @@ export function MenuCatalog({
                 setQuantity(1);
               }}
             >
-              <div>
-                <p className="menu-accent">{item.accent}</p>
+              <div className="menu-card-main">
                 <h3>{item.name}</h3>
               </div>
               <div className="menu-card-footer">
-                <strong>{formatCurrency(item.price)}</strong>
-                <span>Add</span>
+                <strong className="menu-price">{formatCurrency(item.price)}</strong>
               </div>
             </button>
           ))}
@@ -99,8 +90,8 @@ export function MenuCatalog({
                 <p className="eyebrow">Add Item</p>
                 <h2 id="item-quantity-title">{selectedItem.name}</h2>
               </div>
-              <button type="button" className="secondary-button" onClick={closeModal}>
-                Close
+              <button type="button" className="modal-close-button" onClick={closeModal} aria-label="Close dialog">
+                X
               </button>
             </div>
 

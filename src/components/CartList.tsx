@@ -8,9 +8,11 @@ interface CartListProps {
   cart: CartItem[];
   total: number;
   canCompleteOrder: boolean;
+  showCompleteOrder: boolean;
   onIncrement: (itemId: string) => void;
   onDecrement: (itemId: string) => void;
   onRemove: (itemId: string) => void;
+  onClearCart: () => void;
   onCompleteOrder: () => void;
 }
 
@@ -19,22 +21,35 @@ export function CartList({
   cart,
   total,
   canCompleteOrder,
+  showCompleteOrder,
   onIncrement,
   onDecrement,
   onRemove,
+  onClearCart,
   onCompleteOrder,
 }: CartListProps) {
   const [pendingRemoval, setPendingRemoval] = useState<CartItem | null>(null);
+  const [isClearPending, setIsClearPending] = useState(false);
   const subtotal = calculateCartSubtotal(cart);
 
   return (
-    <section className="panel">
+    <section className="panel cart-panel">
       <div className="section-heading">
         <div>
-          <p className="eyebrow">Current Basket</p>
-          <h2>Quick order</h2>
+          <h2 className="basket-title">Current Basket</h2>
         </div>
-        <span className="badge">{selectedTableName}</span>
+        <div className="basket-heading-actions">
+          <span className="badge">{selectedTableName}</span>
+          <button
+            type="button"
+            className="basket-clear-icon"
+            onClick={() => setIsClearPending(true)}
+            aria-label="Clear basket"
+            disabled={cart.length === 0}
+          >
+            X
+          </button>
+        </div>
       </div>
 
       <div className="cart-list">
@@ -58,8 +73,18 @@ export function CartList({
               <button type="button" className="quantity-button" onClick={() => onIncrement(item.id)}>
                 +
               </button>
-              <button type="button" className="delete-item-button" onClick={() => setPendingRemoval(item)}>
-                Delete
+              <button
+                type="button"
+                className="delete-item-button"
+                onClick={() => setPendingRemoval(item)}
+                aria-label={`Delete ${item.name}`}
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="delete-item-icon">
+                  <path
+                    d="M9 3h6l1 2h4v2H4V5h4l1-2Zm-2 6h2v8H7V9Zm4 0h2v8h-2V9Zm4 0h2v8h-2V9ZM6 21V7h12v14H6Z"
+                    fill="currentColor"
+                  />
+                </svg>
               </button>
               <strong>{formatCurrency(item.quantity * item.price)}</strong>
             </div>
@@ -82,9 +107,16 @@ export function CartList({
         </div>
       </div>
 
-      <button type="button" className="primary-button complete-order-button" onClick={onCompleteOrder} disabled={!canCompleteOrder}>
-        Complete Order
-      </button>
+      {showCompleteOrder ? (
+        <button
+          type="button"
+          className="primary-button complete-order-button"
+          onClick={onCompleteOrder}
+          disabled={!canCompleteOrder}
+        >
+          Complete Order
+        </button>
+      ) : null}
 
       {pendingRemoval ? (
         <div className="item-remove-backdrop" role="presentation" onClick={() => setPendingRemoval(null)}>
@@ -105,7 +137,7 @@ export function CartList({
             <div className="action-group">
               <button
                 type="button"
-                className="primary-button"
+                className="secondary-button destructive-button"
                 onClick={() => {
                   onRemove(pendingRemoval.id);
                   setPendingRemoval(null);
@@ -114,6 +146,41 @@ export function CartList({
                 Confirm Delete
               </button>
               <button type="button" className="secondary-button" onClick={() => setPendingRemoval(null)}>
+                Cancel
+              </button>
+            </div>
+          </section>
+        </div>
+      ) : null}
+
+      {isClearPending ? (
+        <div className="item-remove-backdrop" role="presentation" onClick={() => setIsClearPending(false)}>
+          <section
+            className="panel item-remove-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="clear-basket-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">Clear Basket</p>
+                <h2 id="clear-basket-title">Clear all items?</h2>
+              </div>
+            </div>
+            <p className="muted">This will remove the full basket.</p>
+            <div className="action-group">
+              <button
+                type="button"
+                className="secondary-button destructive-button"
+                onClick={() => {
+                  onClearCart();
+                  setIsClearPending(false);
+                }}
+              >
+                Confirm Clear
+              </button>
+              <button type="button" className="secondary-button" onClick={() => setIsClearPending(false)}>
                 Cancel
               </button>
             </div>

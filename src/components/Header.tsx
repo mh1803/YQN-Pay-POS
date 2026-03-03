@@ -39,7 +39,7 @@ export function Header({ activeView, cashierName, terminalName, onChangeView, on
           <strong>{cashierName ?? 'Locked'}</strong>
         </div>
         {cashierName ? (
-          <button type="button" className="secondary-button signout-button" onClick={onSignOut}>
+          <button type="button" className="secondary-button destructive-button signout-button" onClick={onSignOut}>
             Sign Out
           </button>
         ) : null}

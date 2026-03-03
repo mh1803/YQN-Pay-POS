@@ -50,6 +50,12 @@ export interface TableOption {
   status: 'open' | 'occupied' | 'reserved';
 }
 
+export interface TransactionLineItem {
+  name: string;
+  quantity: number;
+  price: number;
+}
+
 export interface Transaction {
   id: string;
   timestamp: string;
@@ -59,6 +65,7 @@ export interface Transaction {
   customerLabel: string;
   cashier: string;
   tableName?: string;
+  orderItems?: TransactionLineItem[];
   failureReason?: string;
 }
 
@@ -89,7 +96,9 @@ export type AppAction =
   | { type: 'INCREMENT_CART_ITEM'; payload: string }
   | { type: 'DECREMENT_CART_ITEM'; payload: string }
   | { type: 'REMOVE_CART_ITEM'; payload: string }
+  | { type: 'CLEAR_CART' }
   | { type: 'SELECT_PAYMENT_METHOD'; payload: Exclude<PaymentMethod, null> }
+  | { type: 'CLEAR_PAYMENT_METHOD' }
   | { type: 'SET_SCENARIO'; payload: DemoScenario }
   | { type: 'START_PAYMENT' }
   | { type: 'RESOLVE_PAYMENT' }

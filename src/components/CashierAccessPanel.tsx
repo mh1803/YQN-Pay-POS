@@ -15,6 +15,14 @@ export function CashierAccessPanel({
   onPinChange,
   onSubmit,
 }: CashierAccessPanelProps) {
+  const appendDigit = (digit: string) => {
+    onPinChange(`${pinValue}${digit}`.slice(0, 4));
+  };
+
+  const removeDigit = () => {
+    onPinChange(pinValue.slice(0, -1));
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit();
@@ -33,22 +41,42 @@ export function CashierAccessPanel({
           <label className="pin-label" htmlFor="cashier-pin">
             Cashier PIN
           </label>
-          <div className="pin-row">
-            <input
-              id="cashier-pin"
-              className="pin-input"
-              type="password"
-              inputMode="numeric"
-              maxLength={4}
-              placeholder="Enter 4-digit PIN"
-              value={pinValue}
-              onChange={(event) => onPinChange(event.target.value)}
-              autoFocus
-            />
-            <button type="submit" className="primary-button">
-              Sign In
+          <input
+            id="cashier-pin"
+            className="pin-input"
+            type="password"
+            inputMode="numeric"
+            maxLength={4}
+            placeholder="Enter 4-digit PIN"
+            value={pinValue}
+            onChange={(event) => onPinChange(event.target.value)}
+            autoFocus
+          />
+          <div className="pin-keypad" aria-label="PIN keypad">
+            {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((digit) => (
+              <button
+                key={digit}
+                type="button"
+                className="pin-key"
+                onClick={() => appendDigit(digit)}
+                aria-label={`Enter ${digit}`}
+              >
+                {digit}
+              </button>
+            ))}
+            <button type="button" className="pin-key pin-key-action" onClick={() => onPinChange('')}>
+              Clear
+            </button>
+            <button type="button" className="pin-key" onClick={() => appendDigit('0')} aria-label="Enter 0">
+              0
+            </button>
+            <button type="button" className="pin-key pin-key-action" onClick={removeDigit}>
+              Delete
             </button>
           </div>
+          <button type="submit" className="primary-button pin-submit">
+            Sign In
+          </button>
           <p className="muted pin-hint">PINs: 0000 = Mahdi, 1111 = Adema</p>
           {pinError ? <p className="error-callout inline-error">{pinError}</p> : null}
         </form>

@@ -34,7 +34,7 @@ export const menuItems: MenuItem[] = [
 export const initialState: AppState = {
   activeView: 'checkout',
   cashierName: null,
-  selectedTableId: '',
+  selectedTableId: 'takeout',
   selectedCategoryId: 'coffee',
   tables: tableOptions,
   categories: menuCategories,
@@ -42,7 +42,7 @@ export const initialState: AppState = {
   cart: [],
   selectedPaymentMethod: null,
   paymentStatus: 'idle',
-  paymentMessage: 'Enter a PIN, choose a table, and add items to begin.',
+  paymentMessage: 'Enter a PIN, choose takeout or table, and add items to begin.',
   paymentScenario: 'success',
   transactions: [],
   activeTransactionId: null,
