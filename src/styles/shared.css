@@ -1,0 +1,236 @@
+.muted {
+  color: var(--ink-soft);
+}
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+  overflow: hidden;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.68rem;
+  color: #9ba3c0;
+}
+
+.badge,
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: var(--surface-accent-soft);
+  color: var(--accent-deep);
+}
+
+.detail-label,
+.summary-block span {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.compact-section-heading {
+  margin-bottom: 12px;
+}
+
+.compact-section-heading h3 {
+  margin: 0;
+}
+
+.section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  margin-right: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--surface-accent-soft);
+  color: var(--accent-deep);
+  font-size: 0.72rem;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.empty-order {
+  padding: 18px;
+  border-radius: 8px;
+  background: var(--bg-surface-soft);
+}
+
+.empty-order h3 {
+  margin: 0 0 8px;
+}
+
+.action-group {
+  display: grid;
+  gap: 18px;
+}
+
+.primary-button,
+.secondary-button {
+  min-height: 48px;
+  border-radius: 8px;
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  transition: opacity 140ms ease, background 140ms ease, border-color 140ms ease;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, var(--surface-dark), var(--surface-dark-strong));
+  color: var(--text-on-dark);
+  border-color: transparent;
+  box-shadow: 0 14px 24px -12px rgba(65, 134, 246, 0.24), 0 4px 10px -6px rgba(65, 134, 246, 0.14);
+}
+
+.primary-button:hover,
+.secondary-button:hover:not(:disabled) {
+  opacity: 0.96;
+}
+
+.secondary-button {
+  border: 0;
+  background: var(--bg-surface-soft);
+  border-color: var(--line);
+  color: var(--ink-strong);
+  box-shadow: var(--shadow-soft);
+}
+
+.secondary-button.destructive-button {
+  background: rgba(232, 40, 74, 0.1);
+  border-color: rgba(232, 40, 74, 0.2);
+  color: var(--error);
+}
+
+.secondary-button.destructive-button:hover:not(:disabled) {
+  background: rgba(232, 40, 74, 0.16);
+  border-color: rgba(232, 40, 74, 0.28);
+}
+
+.primary-button:disabled,
+.secondary-button:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+.modal-close-button {
+  width: 38px;
+  height: 38px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid rgba(159, 48, 69, 0.3);
+  background: rgba(159, 48, 69, 0.14);
+  color: var(--error);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.modal-close-button:hover:not(:disabled),
+.delete-item-button:hover:not(:disabled) {
+  background: rgba(159, 48, 69, 0.22);
+  border-color: rgba(159, 48, 69, 0.42);
+}
+
+.item-remove-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--overlay-soft);
+  backdrop-filter: blur(6px);
+}
+
+.item-remove-modal {
+  width: min(100%, 460px);
+  display: grid;
+  gap: 14px;
+}
+
+.item-remove-modal .section-heading {
+  margin-bottom: 0;
+}
+
+.item-remove-modal .action-group {
+  gap: 12px;
+}
+
+.error-callout {
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(179, 58, 58, 0.1);
+  color: var(--error);
+}
+
+.inline-error {
+  margin: 0;
+}
+
+.status-pill-success {
+  background: rgba(0, 168, 107, 0.1);
+  border: 1px solid rgba(0, 168, 107, 0.18);
+  color: var(--ink-strong);
+}
+
+.status-pill-failed,
+.status-pill-canceled {
+  background: rgba(232, 40, 74, 0.1);
+  border: 1px solid rgba(232, 40, 74, 0.18);
+  color: var(--ink-strong);
+}
+
+.status-pill-timed_out {
+  background: rgba(224, 144, 0, 0.1);
+  border: 1px solid rgba(224, 144, 0, 0.18);
+  color: var(--ink-strong);
+}
+
+.status-pill-refunded,
+.status-pill-voided {
+  background: rgba(224, 144, 0, 0.1);
+  border: 1px solid rgba(224, 144, 0, 0.18);
+  color: var(--ink-strong);
+}
+
+.status-text-success {
+  color: #00a86b;
+}
+
+.status-text-failed,
+.status-text-canceled {
+  color: var(--error);
+}
+
+.status-text-timed_out {
+  color: var(--warning);
+}
+
+.status-text-refunded,
+.status-text-voided {
+  color: var(--warning);
+}

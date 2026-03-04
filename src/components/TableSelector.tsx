@@ -18,7 +18,7 @@ export function TableSelector({ tables, selectedTableId, selectedTableName, onSe
       <section className="panel order-source-panel">
         <div className="section-heading compact-section-heading">
           <div>
-            <h2>Order Type</h2>
+            <h2 className="order-source-heading">Order Type</h2>
           </div>
         </div>
         <div className="order-source-toggle" aria-label="Order type">

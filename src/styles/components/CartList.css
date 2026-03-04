@@ -1,0 +1,142 @@
+.cart-panel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+
+.basket-title {
+  margin: 0;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  line-height: 1.2;
+}
+
+.basket-heading-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.basket-clear-icon {
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid rgba(179, 58, 58, 0.24);
+  background: rgba(179, 58, 58, 0.12);
+  color: var(--error);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.basket-clear-icon:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.cart-list {
+  display: grid;
+  gap: 18px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  align-content: start;
+  padding-right: 18px;
+  scrollbar-gutter: stable;
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cart-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  align-items: center;
+}
+
+.quantity-button,
+.delete-item-button {
+  border: 1px solid var(--line);
+  background: var(--bg-panel);
+  box-shadow: var(--shadow-soft);
+}
+
+.quantity-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.quantity-button-decrease {
+  border-color: rgba(232, 40, 74, 0.22);
+  background: rgba(232, 40, 74, 0.08);
+  color: var(--error);
+}
+
+.quantity-button-increase {
+  border-color: rgba(0, 168, 107, 0.22);
+  background: rgba(0, 168, 107, 0.08);
+  color: #00a86b;
+}
+
+.delete-item-button {
+  width: 40px;
+  height: 40px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 12px;
+  color: var(--error);
+  border: 1px solid rgba(159, 48, 69, 0.28);
+  background: rgba(159, 48, 69, 0.12);
+}
+
+.delete-item-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.summary-block {
+  margin-top: 0;
+  padding-top: 12px;
+  flex-shrink: 0;
+  border-top: 1px solid var(--line);
+}
+
+.summary-block > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.summary-total {
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.summary-total strong {
+  font-size: 1.9rem;
+  line-height: 1;
+}
+
+.complete-order-button {
+  margin-top: 0;
+  flex-shrink: 0;
+  min-height: 82px;
+  padding: 20px 24px;
+  font-size: 1.08rem;
+}

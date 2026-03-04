@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { CartItem } from '../types/state';
 import { formatCurrency } from '../utils/currency';
-import { calculateCartSubtotal } from '../utils/pricing';
 
 interface CartListProps {
   selectedTableName: string;
@@ -30,7 +29,6 @@ export function CartList({
 }: CartListProps) {
   const [pendingRemoval, setPendingRemoval] = useState<CartItem | null>(null);
   const [isClearPending, setIsClearPending] = useState(false);
-  const subtotal = calculateCartSubtotal(cart);
 
   return (
     <section className="panel cart-panel">
@@ -63,7 +61,6 @@ export function CartList({
           <article key={item.id} className="cart-row">
             <div>
               <h3>{item.name}</h3>
-              <p className="muted">{formatCurrency(item.price)} each</p>
             </div>
             <div className="cart-controls">
               <button

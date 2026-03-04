@@ -1,0 +1,127 @@
+.payment-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--overlay-soft);
+  backdrop-filter: blur(6px);
+}
+
+.payment-method-modal {
+  width: min(100%, 760px);
+}
+
+.payment-flow-modal {
+  position: relative;
+  display: block;
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--bg-panel);
+}
+
+.payment-flow-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+}
+
+.payment-flow-header {
+  margin-bottom: 0;
+}
+
+.payment-stage {
+  display: grid;
+  gap: 18px;
+}
+
+.payment-stage-select {
+  min-height: 420px;
+}
+
+.payment-stage-review {
+  min-height: auto;
+}
+
+.payment-total-preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #5f95f1, #4b84ea);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-on-dark);
+}
+
+.payment-total-preview strong {
+  font-size: 1.45rem;
+  color: #ffffff;
+}
+
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.method-tile {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  min-height: 88px;
+  padding: 16px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--bg-panel);
+  box-shadow: var(--shadow-soft);
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.method-tile:hover {
+  border-color: rgba(11, 99, 206, 0.42);
+  box-shadow: 0 14px 24px -12px rgba(72, 104, 138, 0.15), 0 4px 10px -6px rgba(72, 104, 138, 0.09);
+}
+
+.method-icon {
+  width: 42px;
+  height: 42px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--surface-accent-soft);
+  color: var(--accent-deep);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.method-icon svg,
+.method-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.method-copy {
+  display: grid;
+  gap: 4px;
+  text-align: left;
+}
+
+.method-label {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.method-arrow {
+  color: var(--accent-deep);
+  display: inline-grid;
+  place-items: center;
+}
+
+.payment-flow-modal .method-grid {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}

@@ -1,0 +1,6 @@
+.amount-card h2 {
+  margin: 0 0 12px;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 1;
+  font-family: var(--font-mono);
+}

@@ -1,0 +1,112 @@
+.order-source-panel {
+  padding: 14px;
+}
+
+.order-source-heading {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.order-source-toggle {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.order-source-button {
+  min-height: 56px;
+  display: grid;
+  gap: 2px;
+  align-content: center;
+  justify-items: start;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--bg-surface-soft);
+  color: var(--ink-strong);
+  text-align: left;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+
+.order-source-button:hover {
+  border-color: var(--surface-dark-strong);
+}
+
+.order-source-button.active {
+  border-color: var(--surface-dark-strong);
+  background: linear-gradient(135deg, var(--surface-dark), var(--surface-dark-strong));
+  color: var(--text-on-dark);
+}
+
+.order-source-button.active .order-source-detail,
+.order-source-button.active .inline-bracket-value {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.order-source-title {
+  font-weight: 700;
+}
+
+.order-source-detail,
+.inline-bracket-value {
+  margin-left: 6px;
+  color: var(--accent-deep);
+  font-style: italic;
+}
+
+.table-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--overlay-soft);
+  backdrop-filter: blur(6px);
+}
+
+.table-modal {
+  width: min(100%, 860px);
+}
+
+.table-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.table-tile {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-panel);
+  box-shadow: var(--shadow-soft);
+  text-align: left;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+
+.table-tile.active,
+.table-tile:hover {
+  border-color: rgba(11, 99, 206, 0.42);
+  background: var(--bg-surface-soft);
+}
+
+.table-status {
+  font-size: 0.84rem;
+  text-transform: capitalize;
+}
+
+.table-status-open {
+  color: var(--success);
+}
+
+.table-status-occupied {
+  color: var(--accent-deep);
+}
+
+.table-status-reserved {
+  color: var(--warning);
+}

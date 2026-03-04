@@ -1,0 +1,151 @@
+.detail-panel {
+  min-height: 100%;
+}
+
+.transaction-detail-panel {
+  height: 100%;
+  overflow: hidden;
+}
+
+.transaction-detail-header {
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.transaction-detail-header p {
+  margin: 8px 0 0;
+}
+
+.transaction-detail-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 18px 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--surface-dark), var(--surface-dark-strong));
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--text-on-dark);
+  box-shadow: var(--shadow);
+}
+
+.transaction-detail-summary .detail-label {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.transaction-detail-summary .badge,
+.transaction-detail-summary .status-pill {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: #ffffff;
+  color: var(--accent-deep);
+}
+
+.transaction-detail-summary .status-pill-success {
+  border-color: rgba(0, 168, 107, 0.22);
+  color: #00a86b;
+}
+
+.transaction-detail-summary .status-pill-failed,
+.transaction-detail-summary .status-pill-canceled {
+  border-color: rgba(232, 40, 74, 0.22);
+  color: var(--error);
+}
+
+.transaction-detail-summary .status-pill-timed_out,
+.transaction-detail-summary .status-pill-refunded,
+.transaction-detail-summary .status-pill-voided {
+  border-color: rgba(224, 144, 0, 0.24);
+  color: var(--warning);
+}
+
+.transaction-detail-total {
+  display: grid;
+  gap: 6px;
+}
+
+.transaction-detail-summary strong {
+  font-size: 2.1rem;
+  line-height: 1;
+  color: #ffffff;
+  font-family: var(--font-mono);
+}
+
+.transaction-detail-summary-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.transaction-detail-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 16px;
+  scrollbar-gutter: stable;
+}
+
+.detail-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 20px;
+}
+
+.transaction-meta-grid {
+  padding: 16px 18px;
+  border-radius: 8px;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--line);
+}
+
+.transaction-meta-grid > div {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+
+.transaction-order-block {
+  margin-bottom: 20px;
+  padding: 16px 18px;
+  border-radius: 8px;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--line);
+}
+
+.transaction-order-list {
+  display: grid;
+  gap: 12px;
+}
+
+.transaction-order-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.transaction-order-row p {
+  margin: 4px 0 0;
+}
+
+.transaction-detail-actions {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(32, 89, 146, 0.28);
+  flex-shrink: 0;
+}
+
+.transaction-action-button {
+  min-height: 54px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

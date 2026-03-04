@@ -1,0 +1,53 @@
+.app-shell {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 40px;
+  overflow: hidden;
+}
+
+.app-shell::before {
+  display: none;
+}
+
+.background-orb {
+  display: none;
+}
+
+.background-orb-left {
+  top: -120px;
+  left: -100px;
+  background: rgba(47, 140, 255, 0.38);
+}
+
+.background-orb-right {
+  right: -140px;
+  bottom: -160px;
+  background: rgba(38, 208, 255, 0.28);
+}
+
+.app-header,
+.app-content {
+  position: relative;
+  z-index: 1;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 8px;
+  scrollbar-gutter: stable;
+}
+
+.app-content-locked {
+  filter: blur(4px);
+  pointer-events: none;
+  user-select: none;
+}

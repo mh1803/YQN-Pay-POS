@@ -1,0 +1,21 @@
+.checkout-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.62fr) minmax(0, 1.38fr);
+  gap: 32px;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.checkout-sidebar,
+.checkout-main {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.checkout-layout .panel {
+  box-shadow: var(--shadow);
+}

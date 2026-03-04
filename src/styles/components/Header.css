@@ -1,0 +1,65 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-shrink: 0;
+}
+
+.app-header h1 {
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.header-session {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-session-card {
+  display: grid;
+  gap: 4px;
+  min-width: 150px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg-surface-soft);
+}
+
+.header-session-card span {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+
+.signout-button {
+  min-height: 44px;
+}
+
+.tab-nav {
+  display: flex;
+  gap: 18px;
+  padding: 6px;
+  background: var(--bg-panel);
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
+.tab-button {
+  min-height: 48px;
+  min-width: 160px;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink-soft);
+  font-weight: 600;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.tab-button.active,
+.tab-button:hover {
+  background: var(--bg-surface-soft);
+  color: var(--ink-strong);
+}

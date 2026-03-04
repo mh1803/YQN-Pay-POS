@@ -1,0 +1,118 @@
+.overview-grid,
+.insight-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.overview-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.overview-analytics-grid {
+  grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+}
+
+.metric-card,
+.hero-stats div,
+.insight-card {
+  min-width: 140px;
+}
+
+.metric-card {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  background: var(--bg-panel);
+}
+
+.metric-card .eyebrow,
+.overview-hero-card .eyebrow {
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.metric-card .eyebrow {
+  color: var(--ink-soft);
+}
+
+.metric-card h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+  line-height: 1.15;
+}
+
+.metric-card p {
+  margin: 0;
+}
+
+.overview-card-icon {
+  width: 38px;
+  height: 38px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--surface-accent-soft);
+  color: var(--accent-deep);
+}
+
+.overview-card-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.overview-hero-card {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  background: linear-gradient(135deg, var(--surface-dark), var(--surface-dark-strong));
+  color: var(--text-on-dark);
+}
+
+.overview-hero-card .eyebrow,
+.overview-hero-card .muted {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.overview-hero-card .eyebrow {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.overview-hero-card h2 {
+  margin: 0;
+  font-size: clamp(2.2rem, 3.4vw, 3rem);
+  line-height: 1;
+  font-family: var(--font-mono);
+}
+
+.overview-hero-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.overview-hero-meta div {
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.overview-hero-meta span {
+  display: block;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.92rem;
+}
+
+.overview-hero-meta strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.4rem;
+  font-family: var(--font-mono);
+}
+
+.metric-card-accent {
+  background: var(--bg-surface-soft);
+}

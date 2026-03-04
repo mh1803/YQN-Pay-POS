@@ -1,0 +1,86 @@
+@media (max-width: 1100px) {
+  .checkout-layout,
+  .transactions-layout,
+  .overview-grid,
+  .table-grid,
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-detail-grid,
+  .overview-analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .app-shell {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: auto;
+  }
+
+  .app-content,
+  .checkout-layout,
+  .transactions-layout,
+  .checkout-main,
+  .checkout-sidebar,
+  .menu-panel,
+  .cart-panel,
+  .menu-grid,
+  .cart-list {
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .transaction-detail-panel,
+  .transaction-detail-body {
+    overflow: visible;
+    height: auto;
+  }
+
+  .transaction-detail-actions,
+  .transactions-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .tab-nav,
+  .header-session {
+    width: 100%;
+  }
+
+  .header-session {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pin-key {
+    min-height: 58px;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    padding: 24px;
+  }
+
+  .method-grid,
+  .response-grid,
+  .payment-actions,
+  .detail-grid,
+  .category-row {
+    grid-template-columns: 1fr;
+  }
+
+  .quantity-picker {
+    grid-template-columns: 1fr;
+  }
+
+  .pin-keypad {
+    gap: 10px;
+  }
+}
