@@ -100,7 +100,7 @@ export function MenuCatalog({
             <div className="quantity-picker">
               <button
                 type="button"
-                className="quantity-button quantity-button-large"
+                className="quantity-button quantity-button-large quantity-button-decrease"
                 onClick={() => setQuantity((current) => Math.max(1, current - 1))}
               >
                 -
@@ -111,7 +111,7 @@ export function MenuCatalog({
               </div>
               <button
                 type="button"
-                className="quantity-button quantity-button-large"
+                className="quantity-button quantity-button-large quantity-button-increase"
                 onClick={() => setQuantity((current) => current + 1)}
               >
                 +

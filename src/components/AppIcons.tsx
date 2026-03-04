@@ -115,3 +115,28 @@ export function PaymentIcon(props: IconProps) {
     </IconBase>
   );
 }
+
+export function SearchIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="m16 16 4 4" />
+    </IconBase>
+  );
+}
+
+export function FilterIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M4 6h16M7 12h10M10 18h4" />
+    </IconBase>
+  );
+}
+
+export function SortIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M8 6v12M8 18l-3-3M8 18l3-3M16 18V6M16 6l-3 3M16 6l3 3" />
+    </IconBase>
+  );
+}

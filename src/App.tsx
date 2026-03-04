@@ -109,7 +109,7 @@ function App() {
               font-family: Arial, sans-serif;
               margin: 0;
               padding: 24px;
-              color: #1f1b16;
+              color: #203247;
             }
             .receipt {
               display: grid;
@@ -121,7 +121,7 @@ function App() {
               gap: 16px;
             }
             .muted {
-              color: #6e6258;
+              color: #62768c;
               font-size: 12px;
             }
             h1, h2, p {
@@ -129,7 +129,7 @@ function App() {
             }
             .total {
               padding-top: 12px;
-              border-top: 1px dashed #b9a79a;
+              border-top: 1px dashed #9ebfdf;
               font-size: 20px;
               font-weight: 700;
             }
@@ -148,7 +148,7 @@ function App() {
             ${
               transaction.orderItems && transaction.orderItems.length > 0
                 ? `
-            <div style="padding-top:12px;border-top:1px dashed #b9a79a;">
+            <div style="padding-top:12px;border-top:1px dashed #9ebfdf;">
               <p class="muted" style="margin-bottom:8px;">Order</p>
               ${transaction.orderItems
                 .map(

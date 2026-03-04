@@ -1,4 +1,5 @@
 import { Transaction } from '../types/state';
+import { FilterIcon, SearchIcon, SortIcon } from './AppIcons';
 import { formatCurrency } from '../utils/currency';
 import { formatTime } from '../utils/dates';
 import { formatOrderSummary, formatPaymentMethodLabel, formatServiceLabel, formatTransactionStatus } from '../utils/transactions';
@@ -36,41 +37,57 @@ export function TransactionList({
         </div>
         <span className="badge">
           {transactions.length}
-          {transactions.length !== totalTransactions ? ` / ${totalTransactions}` : ''} records
+          {transactions.length !== totalTransactions ? ` / ${totalTransactions}` : ''}{' '}
+          {transactions.length === 1 && transactions.length === totalTransactions ? 'record' : 'records'}
         </span>
       </div>
 
       <div className="transactions-toolbar">
-        <input
-          className="transactions-search"
-          type="search"
-          placeholder="Search transactions"
-          value={searchValue}
-          onChange={(event) => onSearchChange(event.target.value)}
-        />
-        <select
-          className="transactions-filter"
-          value={statusFilter}
-          onChange={(event) => onStatusFilterChange(event.target.value as 'all' | Transaction['status'])}
-        >
-          <option value="all">All Statuses</option>
-          <option value="success">Success</option>
-          <option value="failed">Failed</option>
-          <option value="canceled">Canceled</option>
-          <option value="timed_out">Timed Out</option>
-          <option value="refunded">Refunded</option>
-          <option value="voided">Voided</option>
-        </select>
-        <select
-          className="transactions-filter transactions-sort"
-          value={sortValue}
-          onChange={(event) => onSortChange(event.target.value as 'newest' | 'oldest' | 'amount_desc' | 'amount_asc')}
-        >
-          <option value="newest">Newest</option>
-          <option value="oldest">Oldest</option>
-          <option value="amount_desc">Amount: High to Low</option>
-          <option value="amount_asc">Amount: Low to High</option>
-        </select>
+        <label className="transactions-control transactions-control-search">
+          <span className="transactions-control-icon" aria-hidden="true">
+            <SearchIcon />
+          </span>
+          <input
+            className="transactions-search"
+            type="search"
+            placeholder="Search transactions"
+            value={searchValue}
+            onChange={(event) => onSearchChange(event.target.value)}
+          />
+        </label>
+        <label className="transactions-control">
+          <span className="transactions-control-icon" aria-hidden="true">
+            <FilterIcon />
+          </span>
+          <select
+            className="transactions-filter"
+            value={statusFilter}
+            onChange={(event) => onStatusFilterChange(event.target.value as 'all' | Transaction['status'])}
+          >
+            <option value="all">All Statuses</option>
+            <option value="success">Success</option>
+            <option value="failed">Failed</option>
+            <option value="canceled">Canceled</option>
+            <option value="timed_out">Timed Out</option>
+            <option value="refunded">Refunded</option>
+            <option value="voided">Voided</option>
+          </select>
+        </label>
+        <label className="transactions-control transactions-sort">
+          <span className="transactions-control-icon" aria-hidden="true">
+            <SortIcon />
+          </span>
+          <select
+            className="transactions-filter"
+            value={sortValue}
+            onChange={(event) => onSortChange(event.target.value as 'newest' | 'oldest' | 'amount_desc' | 'amount_asc')}
+          >
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+            <option value="amount_desc">Amount: High to Low</option>
+            <option value="amount_asc">Amount: Low to High</option>
+          </select>
+        </label>
       </div>
 
       <div className="transaction-list">

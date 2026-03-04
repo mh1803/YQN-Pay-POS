@@ -24,7 +24,9 @@ export function OverviewScreen({ transactions }: OverviewScreenProps) {
           <div>
             <p className="eyebrow">Analytics</p>
             <h2>Shift Performance</h2>
+            <p className="muted">Live totals, mix, and recent activity for the current shift.</p>
           </div>
+          <span className="badge">{transactions.length} records</span>
         </div>
       </section>
       <OverviewCards transactions={transactions} />

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POS Colour Scheme – Light</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-base:        #F4F6FA;
+    --bg-surface:     #FFFFFF;
+    --bg-card:        #EEF1F8;
+    --border:         #D8DCE9;
+
+    --text-primary:   #0F1117;
+    --text-secondary: #555B7A;
+    --text-muted:     #9BA3C0;
+
+    --green:          #00A86B;
+    --green-dim:      #00A86B18;
+    --amber:          #E09000;
+    --amber-dim:      #E0900018;
+    --red:            #E8284A;
+    --red-dim:        #E8284A18;
+    --blue:           #2563EB;
+    --blue-dim:       #2563EB18;
+    --purple:         #7C3AED;
+    --purple-dim:     #7C3AED18;
+
+    --font-main: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    min-height: 100vh;
+    padding: 40px 32px;
+  }
+
+  .page-title {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .page-heading {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .page-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 48px;
+  }
+
+  .section { margin-bottom: 48px; }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+  }
+
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+  .swatch {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  }
+  .swatch-color { height: 72px; }
+  .swatch-info {
+    background: var(--bg-surface);
+    padding: 10px 12px;
+  }
+  .swatch-name { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+  .swatch-hex  { font-size: 11px; color: var(--text-secondary); font-family: var(--font-mono); margin-top: 2px; }
+  .swatch-use  { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  }
+  .card-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn {
+    font-family: var(--font-main);
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-green  { background: var(--green);  color: #fff; }
+  .btn-red    { background: var(--red);    color: #fff; }
+  .btn-amber  { background: var(--amber);  color: #fff; }
+  .btn-blue   { background: var(--blue);   color: #fff; }
+  .btn-ghost  { background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border); }
+
+  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+  .badge-green  { background: var(--green-dim);  color: var(--green); }
+  .badge-amber  { background: var(--amber-dim);  color: var(--amber); }
+  .badge-red    { background: var(--red-dim);    color: var(--red); }
+  .badge-blue   { background: var(--blue-dim);   color: var(--blue); }
+  .badge-purple { background: var(--purple-dim); color: var(--purple); }
+
+  .item-list { display: flex; flex-direction: column; gap: 8px; }
+  .item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .item-name  { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+  .item-qty   { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+  .item-price { font-size: 14px; font-weight: 700; font-family: var(--font-mono); color: var(--green); }
+
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+  }
+  .total-label { font-size: 12px; color: var(--text-secondary); }
+  .total-value { font-size: 24px; font-weight: 700; font-family: var(--font-mono); color: var(--text-primary); }
+
+  .alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid;
+  }
+  .alert-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+  .alert-text { font-size: 13px; line-height: 1.5; }
+  .alert-title { font-weight: 600; margin-bottom: 2px; }
+  .alert-green { background: var(--green-dim); color: var(--green); border-color: #00A86B33; }
+  .alert-green .alert-dot { background: var(--green); }
+  .alert-red   { background: var(--red-dim);   color: var(--red);   border-color: #E8284A33; }
+  .alert-red .alert-dot   { background: var(--red); }
+  .alert-amber { background: var(--amber-dim); color: var(--amber); border-color: #E0900033; }
+  .alert-amber .alert-dot { background: var(--amber); }
+
+  .pos-input {
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    padding: 12px 16px;
+    text-align: right;
+    outline: none;
+    margin-bottom: 10px;
+  }
+  .pos-input:focus { border-color: var(--blue); }
+
+  .numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .num-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px;
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+  .num-btn:hover { background: var(--border); }
+  .num-btn.zero { grid-column: span 2; }
+  .num-btn.charge {
+    background: var(--green);
+    color: #fff;
+    border-color: var(--green);
+  }
+
+  .token-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .token {
+    font-size: 12px;
+    font-family: var(--font-mono);
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid;
+  }
+</style>
+</head>
+<body>
+
+  <p class="page-title">Design System</p>
+  <h1 class="page-heading">POS Colour Scheme</h1>
+  <p class="page-sub">Light base · High contrast · Semantic action colours</p>
+
+  <div class="section">
+    <p class="section-label">Base Palette — Backgrounds & Text</p>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F4F6FA;border-bottom:1px solid #D8DCE9"></div>
+        <div class="swatch-info"><div class="swatch-name">Base</div><div class="swatch-hex">#F4F6FA</div><div class="swatch-use">App background</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FFFFFF;border-bottom:1px solid #D8DCE9"></div>
+        <div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-use">Panels, cards</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#EEF1F8"></div>
+        <div class="swatch-info"><div class="swatch-name">Card</div><div class="swatch-hex">#EEF1F8</div><div class="swatch-use">Items, rows, inputs</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#D8DCE9"></div>
+        <div class="swatch-info"><div class="swatch-name">Border</div><div class="swatch-hex">#D8DCE9</div><div class="swatch-use">Dividers, outlines</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0F1117"></div>
+        <div class="swatch-info"><div class="swatch-name">Text Primary</div><div class="swatch-hex">#0F1117</div><div class="swatch-use">Headings, values</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#555B7A"></div>
+        <div class="swatch-info"><div class="swatch-name">Text Secondary</div><div class="swatch-hex">#555B7A</div><div class="swatch-use">Labels, subtitles</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#9BA3C0"></div>
+        <div class="swatch-info"><div class="swatch-name">Text Muted</div><div class="swatch-hex">#9BA3C0</div><div class="swatch-use">Placeholders, hints</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Action Colours — Semantic & Status</p>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#00A86B"></div>
+        <div class="swatch-info"><div class="swatch-name">Confirm Green</div><div class="swatch-hex">#00A86B</div><div class="swatch-use">Charge, paid, success</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#E09000"></div>
+        <div class="swatch-info"><div class="swatch-name">Amber</div><div class="swatch-hex">#E09000</div><div class="swatch-use">Pending, hold, warning</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#E8284A"></div>
+        <div class="swatch-info"><div class="swatch-name">Alert Red</div><div class="swatch-hex">#E8284A</div><div class="swatch-use">Void, refund, error</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#2563EB"></div>
+        <div class="swatch-info"><div class="swatch-name">Info Blue</div><div class="swatch-hex">#2563EB</div><div class="swatch-use">Split bill, table, info</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#7C3AED"></div>
+        <div class="swatch-info"><div class="swatch-name">Loyalty Purple</div><div class="swatch-hex">#7C3AED</div><div class="swatch-use">Discounts, loyalty</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Component Examples</p>
+    <div class="demo-grid">
+
+      <div class="card">
+        <p class="card-title">Action Buttons</p>
+        <div class="btn-row">
+          <button class="btn btn-green">Charge £42.50</button>
+          <button class="btn btn-red">Void</button>
+          <button class="btn btn-amber">Hold</button>
+          <button class="btn btn-blue">Split</button>
+          <button class="btn btn-ghost">Cancel</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="card-title">Status Badges</p>
+        <div class="badge-row">
+          <span class="badge badge-green">Paid</span>
+          <span class="badge badge-amber">Pending</span>
+          <span class="badge badge-red">Voided</span>
+          <span class="badge badge-blue">Table 4</span>
+          <span class="badge badge-purple">Member</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="card-title">Order Items</p>
+        <div class="item-list">
+          <div class="item-row">
+            <div><div class="item-name">Flat White</div><div class="item-qty">× 2</div></div>
+            <div class="item-price">£5.80</div>
+          </div>
+          <div class="item-row">
+            <div><div class="item-name">Eggs Benedict</div><div class="item-qty">× 1</div></div>
+            <div class="item-price">£12.50</div>
+          </div>
+          <div class="item-row">
+            <div><div class="item-name">Orange Juice</div><div class="item-qty">× 1</div></div>
+            <div class="item-price">£4.20</div>
+          </div>
+        </div>
+        <div class="total-row">
+          <span class="total-label">Total</span>
+          <span class="total-value">£22.50</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="card-title">Payment Numpad</p>
+        <input class="pos-input" value="£0.00" readonly />
+        <div class="numpad">
+          <button class="num-btn">1</button><button class="num-btn">2</button><button class="num-btn">3</button>
+          <button class="num-btn">4</button><button class="num-btn">5</button><button class="num-btn">6</button>
+          <button class="num-btn">7</button><button class="num-btn">8</button><button class="num-btn">9</button>
+          <button class="num-btn zero">0</button><button class="num-btn charge">✓ Charge</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="card-title">Notifications & Alerts</p>
+        <div class="alert alert-green">
+          <div class="alert-dot"></div>
+          <div class="alert-text"><div class="alert-title">Payment Accepted</div>Card ending 4821 — £22.50</div>
+        </div>
+        <div class="alert alert-amber">
+          <div class="alert-dot"></div>
+          <div class="alert-text"><div class="alert-title">Order On Hold</div>Table 7 waiting 8 mins</div>
+        </div>
+        <div class="alert alert-red">
+          <div class="alert-dot"></div>
+          <div class="alert-text"><div class="alert-title">Card Declined</div>Ask customer for another card</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="card-title">CSS Variables</p>
+        <div class="token-row">
+          <span class="token" style="background:#F4F6FA;border-color:#D8DCE9;color:#555B7A">--bg-base</span>
+          <span class="token" style="background:#EEF1F8;border-color:#D8DCE9;color:#555B7A">--bg-card</span>
+          <span class="token" style="background:#00A86B18;border-color:#00A86B;color:#00A86B">--green</span>
+          <span class="token" style="background:#E0900018;border-color:#E09000;color:#E09000">--amber</span>
+          <span class="token" style="background:#E8284A18;border-color:#E8284A;color:#E8284A">--red</span>
+          <span class="token" style="background:#2563EB18;border-color:#2563EB;color:#2563EB">--blue</span>
+          <span class="token" style="background:#7C3AED18;border-color:#7C3AED;color:#7C3AED">--purple</span>
+          <span class="token" style="background:#EEF1F8;border-color:#D8DCE9;color:#0F1117">--text-primary</span>
+          <span class="token" style="background:#EEF1F8;border-color:#D8DCE9;color:#555B7A">--text-secondary</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

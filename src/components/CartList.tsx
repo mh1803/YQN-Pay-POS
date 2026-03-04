@@ -66,11 +66,19 @@ export function CartList({
               <p className="muted">{formatCurrency(item.price)} each</p>
             </div>
             <div className="cart-controls">
-              <button type="button" className="quantity-button" onClick={() => onDecrement(item.id)}>
+              <button
+                type="button"
+                className="quantity-button quantity-button-decrease"
+                onClick={() => onDecrement(item.id)}
+              >
                 -
               </button>
               <span>{item.quantity}</span>
-              <button type="button" className="quantity-button" onClick={() => onIncrement(item.id)}>
+              <button
+                type="button"
+                className="quantity-button quantity-button-increase"
+                onClick={() => onIncrement(item.id)}
+              >
                 +
               </button>
               <button
