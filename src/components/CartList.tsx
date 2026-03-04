@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CartItem } from '../types/state';
 import { formatCurrency } from '../utils/currency';
-import { DEMO_VAT, calculateCartSubtotal } from '../utils/pricing';
+import { calculateCartSubtotal } from '../utils/pricing';
 
 interface CartListProps {
   selectedTableName: string;
@@ -101,14 +101,6 @@ export function CartList({
       </div>
 
       <div className="summary-block">
-        <div>
-          <span>Subtotal</span>
-          <strong>{formatCurrency(subtotal)}</strong>
-        </div>
-        <div>
-          <span>VAT</span>
-          <strong>{formatCurrency(DEMO_VAT)}</strong>
-        </div>
         <div className="summary-total">
           <span>Total</span>
           <strong>{formatCurrency(total)}</strong>

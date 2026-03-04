@@ -535,6 +535,9 @@ button {
 .complete-order-button {
   margin-top: 0;
   flex-shrink: 0;
+  min-height: 92px;
+  padding: 24px 26px;
+  font-size: 1.16rem;
 }
 
 .payment-panel {
