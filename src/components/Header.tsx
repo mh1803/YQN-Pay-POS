@@ -17,10 +17,7 @@ const tabs: Array<{ id: AppView; label: string }> = [
 export function Header({ activeView, cashierName, terminalName, onChangeView, onSignOut }: HeaderProps) {
   return (
     <header className="app-header">
-      <div>
-        <p className="eyebrow">Merchant Console</p>
-        <h1>YQN Pay POS</h1>
-      </div>
+      <div className="header-spacer" aria-hidden="true" />
       <nav className="tab-nav" aria-label="Main navigation">
         {tabs.map((tab) => (
           <button
